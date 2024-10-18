@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> simran Tax Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="number"] {
+            width: 200px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #3311f7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Simran Tax Calculator</h1>
+<label for="salary">Enter your annual income:</label><br>
+<input type="number" id="salary" placeholder="Salary" required><br>
+<button onclick="calculateTax()">Calculate</button>
+
+<h2 id="result"></h2>
+
+<script>
+    function calculateTax() {
+        const salary = parseFloat(document.getElementById('salary').value);
+        let tax = 0;
+
+        if (salary <= 15600) {
+            tax = salary * 0.105;
+        } else if (salary <= 53500) {
+            tax = (15600 * 0.105) + ((salary - 15600) * 0.175);
+        } else if (salary <= 78100) {
+            tax = (15600 * 0.105) + ((53500 - 15600) * 0.175) + ((salary - 53500) * 0.30);
+        } else {
+            tax = (15600 * 0.105) + ((53500 - 15600) * 0.175) + ((78100 - 53500) * 0.30) + ((salary - 78100) * 0.33);
+        }
+
+        document.getElementById('result').innerText = `Your estimated tax is: $${tax.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
