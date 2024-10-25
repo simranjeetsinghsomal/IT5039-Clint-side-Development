@@ -3,43 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart Quantity</title>
+    <title>Welcome in Simran gaming world</title>
     <style>
-        .button {
-            margin: 5px;
-            padding: 10px;
-            cursor: pointer;
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-    <h2>Cart Quantity</h2>
+    <h1>Time to make some $ money. </h1>
     <div>
-        <button class="button" onclick="changeQuantity(0)">Show Quantity</button>
-        <button class="button" onclick="changeQuantity(2)">+2</button>
-        <button class="button" onclick="changeQuantity(3)">+3</button>
-        <button class="button" onclick="resetQuantity()">Reset</button>
+        <img id="dice1" src="images/dice6.png" alt="Dice 1">
+        <img id="dice2" src="images/dice6.png" alt="Dice 2">
     </div>
-    <button class="button" onclick="addToCart()">Add to Cart</button>
+    <button id="playButton">Play</button>
 
     <script>
-        let currentQuantity = 0;
+        document.getElementById("playButton").addEventListener("click", function() {
+            // Step 3: Create a Random Number
+            var randomNumber1 = Math.floor(Math.random() * 6) + 1; // Random number between 1 and 6
+            var randomNumber2 = Math.floor(Math.random() * 6) + 1; // Random number for player 2
 
-        function changeQuantity(amount) {
-            currentQuantity += amount;
-            document.getElementById('quantity').innerText = currentQuantity;
-        }
+            // Step 4: Change the <img> to a Random Dice
+            document.getElementById("dice1").setAttribute("src", "images/dice" + randomNumber1 + ".png");
+            document.getElementById("dice2").setAttribute("src", "images/dice" + randomNumber2 + ".png");
 
-        function resetQuantity() {
-            currentQuantity = 0;
-            document.getElementById('quantity').innerText = currentQuantity;
-        }
-
-        function addToCart() {
-            alert(`Added ${currentQuantity} items to the cart.`);
-            resetQuantity(); // Reset after adding to cart
-        }
+            // Step 6: Change the Title to Display a Winner
+            var resultText;
+            if (randomNumber1 > randomNumber2) {
+                resultText = "🚩 Congratulation simran you win $!";
+            } else if (randomNumber1 < randomNumber2) {
+                resultText = "Congratulation harsh you win $! 🚩";
+            } else {
+                resultText = "It's a Draw!";
+            }
+            document.querySelector("h1").innerText = resultText;
+        });
     </script>
 
 </body>

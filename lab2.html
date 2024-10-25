@@ -3,56 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> simran Tax Calculator</title>
+    <title>Simran Joke Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            text-align: center;
         }
-        input[type="number"] {
-            width: 200px;
-            padding: 10px;
-            margin: 10px 0;
+        #joke {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
-        button {
-            padding: 10px 15px;
-            background-color: #3311f7;
-            color: white;
+        #punchline {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        #generate-joke {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #45a049;
+        #generate-joke:hover {
+            background-color: #3e8e41;
         }
     </style>
 </head>
 <body>
+    <h1>Simran Joke Generator</h1>
+    <p id="joke"></p>
+    <p id="punchline"></p>
+    <button id="generate-joke">Generate Joke</button>
 
-<h1>Simran Tax Calculator</h1>
-<label for="salary">Enter your annual income:</label><br>
-<input type="number" id="salary" placeholder="Salary" required><br>
-<button onclick="calculateTax()">Calculate</button>
+    <script>
+        // Array of joke objects
+        const jokes = [
+            { joke: "Why don't scientists trust atoms?", punchline: "Because they make up everything." },
+            { joke: "Why don't eggs tell jokes?", punchline: "They'd crack each other up." },
+            { joke: "Why did the tomato turn red?", punchline: "Because it saw the salad dressing." },
+            { joke: "What do you call a fake noodle?", punchline: "An impasta." },
+            { joke: "Why did the scarecrow win an award?", punchline: "Because he was outstanding in his field." },
+            { joke: "Why don't lobsters share?", punchline: "Because they're shellfish." },
+            { joke: "What do you call a can opener that doesn't work?", punchline: "A can't opener." },
+            { joke: "I told my wife she was drawing her eyebrows too high.", punchline: "She looked surprised." },
+            { joke: "Why don't some couples go to the gym?", punchline: "Because some relationships don't work out." },
+            { joke: "What do you call a bear with no socks on?", punchline: "Barefoot." },
+        ];
 
-<h2 id="result"></h2>
+        // Get the joke and punchline elements
+        const jokeElement = document.getElementById('joke');
+        const punchlineElement = document.getElementById('punchline');
 
-<script>
-    function calculateTax() {
-        const salary = parseFloat(document.getElementById('salary').value);
-        let tax = 0;
+        // Function to generate a random joke
+        function generateJoke() {
+            // Get a random index from the jokes array
+            const randomIndex = Math.floor(Math.random() * jokes.length);
 
-        if (salary <= 15600) {
-            tax = salary * 0.105;
-        } else if (salary <= 53500) {
-            tax = (15600 * 0.105) + ((salary - 15600) * 0.175);
-        } else if (salary <= 78100) {
-            tax = (15600 * 0.105) + ((53500 - 15600) * 0.175) + ((salary - 53500) * 0.30);
-        } else {
-            tax = (15600 * 0.105) + ((53500 - 15600) * 0.175) + ((78100 - 53500) * 0.30) + ((salary - 78100) * 0.33);
+            // Get the joke and punchline at the random index
+            const joke = jokes[randomIndex].joke;
+            const punchline = jokes[randomIndex].punchline;
+
+            // Update the joke and punchline elements
+            jokeElement.textContent = joke;
+            punchlineElement.textContent = punchline;
         }
 
-        document.getElementById('result').innerText = `Your estimated tax is: $${tax.toFixed(2)}`;
-    }
-</script>
+        // Add an event listener to the generate joke button
+        document.getElementById('generate-joke').addEventListener('click', generateJoke);
 
+        // Generate a joke on page load
+        generateJoke();
+    </script>
 </body>
 </html>
